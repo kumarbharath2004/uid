@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Student Info</title>
+  <style>
+
+
+  :root {
+    --primary-color: #3498db;
+    --secondary-color: #2c3e50;
+    --background-color: rgba(255, 255, 255, 0.9);
+  }
+
+  body {
+    font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('https://images.unsplash.com/photo-1497633762265-9d179a990aa6');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    margin: 0;
+    padding: 20px;
+    color: var(--secondary-color);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  h1 {
+    text-align: center;
+    color: var(--secondary-color);
+    margin-top: 20px;
+    font-size: 2.8em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(255,255,255,0.5);
+  }
+
+  #student-form, #student-list {
+    max-width: 450px;
+    margin: 30px auto;
+    padding: 30px;
+    background: var(--background-color);
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  #student-form:hover, #student-list:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: var(--secondary-color);
+    font-size: 1.1em;
+  }
+
+  input[type="text"],
+  input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    font-size: 1em;
+  }
+
+  input[type="text"]:focus,
+  input[type="number"]:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+  }
+
+  input[type="button"] {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  input[type="button"]:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(41, 128, 185, 0.4);
+  }
+
+  #student-list {
+    max-width: 800px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 20px;
+    overflow: hidden;
+    border-radius: 12px;
+    background-color: var(--background-color);
+  }
+
+  th, td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid #ecf0f1;
+  }
+
+  th {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1em;
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+  tr:nth-child(even) {
+    background-color: rgba(236, 240, 241, 0.5);
+  }
+
+  tr:hover {
+    background-color: rgba(189, 195, 199, 0.7);
+    transition: background-color 0.3s ease;
+  }
+
+  @media (max-width: 600px) {
+    body {
+      padding: 15px;
+    }
+
+    h1 {
+      font-size: 2.2em;
+    }
+
+    #student-form, #student-list {
+      max-width: 100%;
+      padding: 20px;
+      margin: 20px auto;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="button"] {
+      font-size: 0.9em;
+    }
+
+    th, td {
+      padding: 12px;
+      font-size: 0.9em;
+    }
+  }
+</style>
+</head>
+<body>
+  <h1>Student Info</h1>
+  <form id="student-form">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name"><br><br>
+    <label for="rollNo">Roll No:</label>
+    <input type="number" id="rollNo" name="rollNo"><br><br>
+    <label for="tam">Tam</label>
+    <input type="number" id="tam" name="tam"><br><br>
+    <label for="eng">Eng:</label>
+    <input type="number" id="eng" name="eng"><br><br>
+    <label for="mat">Mat:</label>
+    <input type="number" id="mat" name="mat"><br><br>
+    <label for="sci">Sci:</label>
+    <input type="number" id="sci" name="sci"><br><br>
+    <label for="soc">Soc:</label>
+    <input type="number" id="soc" name="soc"><br><br>
+    <input type="button" value="Add Student" onclick="addStudent()">
+  </form>
+  <div id="student-list">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Roll No</th>
+          <th>Total</th>
+          <th>Average</th>
+        </tr>
+      </thead>
+      <tbody id="student-table-body">
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    class Student {
+      constructor(name, rollNo, tam, eng, mat, sci, soc) {
+        this.name = name;
+        this.rollNo = rollNo;
+        this.tam = parseInt(tam);
+        this.eng = parseInt(eng);
+        this.mat = parseInt(mat);
+        this.sci = parseInt(sci);
+        this.soc = parseInt(soc);
+        this.total = this.tam + this.eng + this.mat + this.sci + this.soc;
+        this.avg = this.total / 5;
+      }
+
+      displayInfo() {
+        return `
+          <tr>
+            <td>${this.name}</td>
+            <td>${this.rollNo}</td>
+            <td>${this.total}</td>
+            <td>${this.avg.toFixed(2)}</td>
+          </tr>
+        `;
+      }
+    }
+
+    let students = [];
+
+    function addStudent() {
+      const name = document.getElementById("name").value;
+      const rollNo = document.getElementById("rollNo").value;
+      const tam = document.getElementById("tam").value;
+      const eng = document.getElementById("eng").value;
+      const mat = document.getElementById("mat").value;
+      const sci = document.getElementById("sci").value;
+      const soc = document.getElementById("soc").value;
+
+      const student = new Student(name, rollNo, tam, eng, mat, sci, soc);
+      students.push(student);
+
+      document.getElementById("student-table-body").innerHTML += student.displayInfo();
+
+      // clear form fields
+      document.getElementById("name").value = "";
+      document.getElementById("rollNo").value = "";
+      document.getElementById("tam").value = "";
+      document.getElementById("eng").value = "";
+      document.getElementById("mat").value = "";
+      document.getElementById("sci").value = "";
+      document.getElementById("soc").value = "";
+    }
+  </script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+</html>
